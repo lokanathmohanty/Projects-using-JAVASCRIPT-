@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Professional Recipe App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+
+        <button id="homeBtn" class="home-btn">Home</button>
+
+        <h3>Categories</h3>
+        <div id="categoryList"></div>
+        <div id="categoryList"></div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main">
+        <h1 class="headername">Recipe App</h1>
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search recipes..." />
+          <button id="searchBtn">Search</button>
+        </div>
+
+        <!-- Grid View -->
+        <div id="recipeContainer" class="recipes"></div>
+
+        <!-- Detail View -->
+        <div id="detailView" class="detail hidden"></div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

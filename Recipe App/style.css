@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+
+.sidebar {
+  width: 240px;
+  background: #111;
+  color: white;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar label {
+  display: block;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.home-btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  background: #ff5722;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.home-btn:hover {
+  background: #e64a19;
+}
+.headername {
+  padding: 10px;
+
+  margin: 0 auto;
+
+  background: white;
+  color: #ff5722;
+  text-align: center;
+  font-size: 32px;
+}
+.headername:hover {
+ font-size: x-large;
+}
+
+/* ===== Main ===== */
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+}
+
+.search-bar button {
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+/* ===== Grid ===== */
+
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+/* ===== Detail View ===== */
+
+.detail {
+  max-width: 800px;
+}
+
+.detail img {
+  width: 100%;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .recipes {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
