@@ -1,0 +1,149 @@
+ <!DOCTYPE html> <!-- Declares HTML5 document type -->
+<html lang="en"> <!-- Root HTML element, English language -->
+<head>
+    <!-- Metadata section - browser configuration -->
+    <meta charset="UTF-8"> <!-- Supports all Unicode characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobile responsiveness -->
+    <title>Check Prime and Non-Prime Number</title> <!-- Browser tab title -->
+    
+    <style> 
+        /* GLOBAL STYLES */
+        body {
+            font-family: Arial, sans-serif; /* Clean font stack */
+            margin: 0; /* Remove default margins */
+            padding: 0; /* Remove default padding */
+            background-color: #f0f0f0; /* Light gray background */
+        }
+        
+        /* HEADING STYLES */
+        h1 {
+            text-align: center; /* Center title */
+            margin-bottom: 20px; /* Space below title */
+            font-size: 28px; /* Large title size */
+        }
+        
+        /* MAIN CONTAINER */
+        div {
+            display: flex; /* Flexbox layout */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            margin-top: 20px; /* Space from top */
+            padding: 20px; /* Internal spacing */
+        }
+        
+        /* INPUT FIELD STYLES */
+        input[type="number"] {
+            padding: 10px; /* Comfortable input padding */
+            margin-bottom: 10px; /* Space below input */
+        }
+        
+        /* BUTTON STYLES */
+        button {
+            padding: 10px; /* Button padding */
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border: none; /* No border */
+            cursor: pointer; /* Hand cursor on hover */
+        }
+        
+        /* RESULT TEXT STYLES */
+        p {
+            margin-top: 10px; /* Space above result */
+        }
+        
+        /* ERROR MESSAGE STYLES */
+        .error {
+            color: red; /* Red color for errors/non-prime */
+        }
+        
+        /* SUCCESS MESSAGE STYLES */
+        .success {
+            color: green; /* Green color for prime numbers */
+            font-weight: bold; /* Bold for emphasis */
+        }
+        
+        /* MOBILE RESPONSIVE DESIGN */
+        @media screen and (max-width: 768px) {
+            h1 { font-size: 24px; } /* Smaller title on mobile */
+            input[type="number"] { font-size: 16px; } /* Readable input size */
+            button { font-size: 16px; } /* Readable button text */
+            p { font-size: 16px; } /* Readable result text */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- PAGE CONTENT -->
+    <h1>Check Prime and Non-Prime Number</h1>
+    <div>
+        <input type="number" id="numberInput" placeholder="Enter a number.."> <!-- Number input field -->
+        <button id="checkButton">Check</button> <!-- Check button trigger -->
+        <p id="result"></p> <!-- Result display area -->
+    </div>
+
+    <script>
+        /* GET DOM ELEMENTS */
+        const numberInput = document.getElementById("numberInput"); /* Reference to input field */
+        const checkButton = document.getElementById("checkButton"); /* Reference to check button */
+        const resultElement = document.getElementById("result");     /* Reference to result paragraph */
+        
+        let isPrime = true; /* Flag to track if number is prime (reset each check) */
+
+        /* MAIN CHECK BUTTON EVENT LISTENER */
+        checkButton.addEventListener("click", () => {
+            const number = parseInt(numberInput.value); /* Convert input to integer */
+            
+            /* VALIDATION: Check if input is valid number */
+            if (isNaN(number)) {
+                resultElement.textContent = "Please enter a valid number."; /* Error message */
+                resultElement.classList.add("error"); /* Add red color class */
+                return; /* Exit function */
+            }
+
+            /* VALIDATION: Numbers ≤ 1 are not prime */
+            if (number <= 1) {
+                resultElement.textContent = "1 is neither prime nor non-prime."; /* Special case message */
+                resultElement.classList.add("error");
+                return;
+            }
+
+            /* PRIME CHECKING ALGORITHM - Optimized with Math.sqrt() */
+            for (let i = 2; i <= Math.sqrt(number); i++) { /* Only check up to square root */
+                if (number % i === 0) { /* If number is divisible by i */
+                    isPrime = false; /* Not prime */
+                    break; /* Exit loop early */
+                }
+            }
+
+            /* DISPLAY RESULT */
+            if (isPrime) {
+                resultElement.textContent = `${number} is a prime number.`; /* Prime result */
+                resultElement.classList.add("success"); /* Green color */
+            } else {
+                resultElement.textContent = `${number} is a non-prime number.`; /* Non-prime result */
+                resultElement.classList.add("error"); /* Red color */
+            }
+        });
+
+        /* CLEAR RESULT ON INPUT */
+        numberInput.addEventListener("input", () => {
+            resultElement.textContent = ""; /* Clear previous result */
+            resultElement.classList.remove("error", "success"); /* Remove color classes */
+        });
+
+        /* ENTER KEY ON INPUT FIELD */
+        numberInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") { /* If Enter key pressed */
+                checkButton.click(); /* Trigger button click */
+            }
+        });
+
+        /* ENTER KEY ON BUTTON (Accessibility) */
+        checkButton.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") { /* If Enter key pressed on button */
+                checkButton.click(); /* Trigger check */
+            }
+        }); /* Fixed missing closing parenthesis */
+    </script>
+</body>
+</html>
