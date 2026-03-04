@@ -13,8 +13,6 @@ A fully responsive **HTML/CSS/JavaScript** counter application with color-coded 
 - **Modern UI** with Flexbox centering
 - **No dependencies** - pure vanilla JavaScript
 
-## 📱 Live Demo
-[Deployed on GitHub Pages](https://lokanathmohanty.github.io/Projects-using-JAVASCRIPT-/counter-app/)
 
 ## 🛠️ Tech Stack
 HTML5 | CSS3 | Vanilla JavaScript
@@ -34,13 +32,7 @@ text
 4. Click **Reset** to set count to 0
 5. Watch the color change automatically!
 
-## 📸 Screenshots
 
-**Desktop View:**
-![Desktop Preview](screenshots/desktop.png)
-
-**Mobile View:**
-![Mobile Preview](screenshots/mobile.png)
 
 ## 🚀 Quick Start (Local)
 ```bash
