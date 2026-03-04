@@ -1,0 +1,169 @@
+<!doctype html>
+<!-- Declares the document type as HTML5 -->
+<html lang="en">
+  <!-- Root element of HTML page, sets language to English -->
+  <head>
+    <!-- Metadata section - contains info about the document, not visible on page -->
+    <meta charset="UTF-8" />
+    <!-- Sets character encoding to UTF-8 (supports all characters) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Makes page responsive on mobile devices -->
+    <title>Counter App</title>
+    <!-- Sets the browser tab title -->
+  </head>
+
+  <style>
+    /* CSS STYLES FOR THE ENTIRE PAGE */
+
+    body {
+      font-family:
+        Arial, sans-serif; /* Sets default font to Arial or fallback sans-serif */
+      margin: 0; /* Removes default browser margin */
+      padding: 0px; /* Removes default browser padding (was 'px' - fixed to 0px) */
+      background-color: antiquewhite; /* Sets light beige background color */
+      display: flex; /* Uses flexbox layout for centering */
+      justify-content: center; /* Centers content horizontally */
+      align-items: center; /* Centers content vertically */
+      height: 100vh; /* Full viewport height */
+      width: 100vw; /* Full viewport width */
+    }
+
+    h1 {
+      font-size: 36px; /* Large heading size */
+      margin-bottom: 20px; /* Space below heading */
+      text-align: center; /* Centers the title text */
+    }
+
+    span {
+      font-size: 24px; /* Font size for any span elements */
+      margin-right: 10px; /* Right margin */
+      margin-left: 10px; /* Left margin */
+    }
+
+    .div1 {
+      display: flex; /* Flexbox container for buttons and count */
+      justify-content: center; /* Centers children horizontally */
+      align-items: center; /* Centers children vertically */
+    }
+
+    .div2 {
+      display: flex; /* Flexbox container for reset button */
+      justify-content: center; /* Centers reset button horizontally */
+      align-items: center; /* Centers reset button vertically */
+      margin-top: 20px; /* Space above reset button */
+      margin-bottom: 20px; /* Space below reset button */
+    }
+
+    button {
+      padding: 10px 20px; /* 10px top/bottom, 20px left/right padding */
+      font-size: 20px; /* Button text size */
+      cursor: pointer; /* Hand cursor on hover */
+      border: none; /* Removes default border */
+      border-radius: 5px; /* Rounded corners */
+    }
+
+    p {
+      padding: 10px 20px; /* Padding around count text */
+      font-size: 25px; /* Large font for count display */
+      border: none; /* No border around count */
+      border-radius: 5px; /* Rounded corners for count box */
+    }
+
+    /* RESPONSIVE DESIGN - adjusts layout for mobile screens */
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 25px;
+      } /* Smaller title on mobile */
+      p {
+        font-size: 20px;
+      } /* Smaller count text on mobile */
+      button {
+        font-size: 20px;
+      } /* Smaller button text on mobile */
+      span {
+        font-size: 20px;
+      } /* Smaller span text on mobile */
+      .div1 {
+        flex-direction: column;
+      } /* Stack buttons vertically on mobile */
+      .div2 {
+        flex-direction: column;
+      } /* Stack reset button vertically on mobile */
+    }
+  </style>
+
+  <body>
+    <!-- MAIN CONTENT CONTAINER -->
+    <div>
+      <h1>Counter App</h1>
+
+      <!-- COUNTER DISPLAY AND CONTROL BUTTONS -->
+      <div class="div1">
+        <button id="decrementBtn">Decrement -</button>
+        <!-- Button to decrease count -->
+        <p id="count">Count: 0</p>
+        <!-- Displays current count value -->
+        <button id="incrementBtn">Increment +</button>
+        <!-- Button to increase count -->
+      </div>
+
+      <!-- RESET BUTTON CONTAINER -->
+      <div class="div2">
+        <button id="resetBtn">Reset</button>
+        <!-- Button to reset count to 0 -->
+      </div>
+    </div>
+  </body>
+
+  <script>
+    /* JAVASCRIPT FOR COUNTER FUNCTIONALITY */
+
+    let count = 0; /* Initializes counter variable to 0 */
+
+    /* Gets references to HTML elements using their IDs */
+    const decrementBtn =
+      document.getElementById(
+        "decrementBtn",
+      ); /* Reference to decrement button */
+    const incrementBtn =
+      document.getElementById(
+        "incrementBtn",
+      ); /* Reference to increment button */
+    const resetBtn =
+      document.getElementById("resetBtn"); /* Reference to reset button */
+    const countElement =
+      document.getElementById("count"); /* Reference to count display element */
+
+    /* Function to update the displayed count and change its color */
+    function updateCount() {
+      countElement.textContent = `Count: ${count}`; /* Updates text with current count value */
+
+      /* Changes count color based on value */
+      if (count < 0) {
+        countElement.style.color = "red"; /* Red for negative numbers */
+      } else if (count > 0) {
+        countElement.style.color = "green"; /* Green for positive numbers */
+      } else {
+        countElement.style.color = "blue"; /* Blue for zero */
+      }
+    }
+
+    /* EVENT LISTENER: Decrement button click */
+    decrementBtn.addEventListener("click", () => {
+      count--; /* Decreases count by 1 */
+      updateCount(); /* Updates display and color */
+    });
+
+    /* EVENT LISTENER: Increment button click */
+    incrementBtn.addEventListener("click", () => {
+      count++; /* Increases count by 1 */
+      updateCount(); /* Updates display and color */
+    });
+
+    /* EVENT LISTENER: Reset button click */
+    resetBtn.addEventListener("click", () => {
+      count = 0; /* Resets count to 0 */
+      updateCount(); /* Updates display and color */
+    });
+  </script>
+</html>
